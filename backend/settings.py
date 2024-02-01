@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zmofa212ru52%!ie0ap!ak*jl_a#4-%c(bac#*zrfhi4on=h=*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'songsift-54d090579570.herokuapp.com']
 
 
 # Application definition
@@ -128,6 +128,8 @@ STATIC_URL = 'assets/'
 STATICFILES_DIRS = [
     BASE_DIR / 'frontend/dist/assets'
 ]
+
+STATIC_ROOT = BASE_DIR / 'dist/assets'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
