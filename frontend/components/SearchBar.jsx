@@ -19,7 +19,7 @@ export default function SearchBar({ setSearchedSongs }) {
   };
 
   return (
-    <InputGroup className="mb-3">
+    <InputGroup className="mb-3 mt-3">
       <Form.Control
         placeholder="Search for song"
         onChange={(e) => {

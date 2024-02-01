@@ -7,6 +7,7 @@ export default function HomePage() {
   const [searchedSongs, setSearchedSongs] = useState([]);
   return (
     <>
+      <h2 className="text-center">SongSift</h2>
       <SearchBar setSearchedSongs={setSearchedSongs} />
       <Row>
         {searchedSongs &&
