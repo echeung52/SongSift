@@ -11,7 +11,7 @@ export default function RecommendationsPage() {
   const getRecommendations = async () => {
     try {
       const { data } = await axios.get(
-        `https://www.song-sift.com/recommendations/?q=${id}`
+        `https://www.song-sift.com/api/recommendations/?q=${id}`
       );
       setRecommendations(data);
     } catch (error) {

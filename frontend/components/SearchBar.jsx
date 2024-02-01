@@ -9,7 +9,7 @@ export default function SearchBar({ setSearchedSongs }) {
     try {
       if (input !== "") {
         const { data } = await axios.get(
-          `https://www.song-sift.com/search/${input}`
+          `https://www.song-sift.com/api/search/${input}`
         );
         setSearchedSongs(data);
       }
