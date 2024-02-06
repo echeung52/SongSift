@@ -5,7 +5,7 @@ export default function Header() {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Image
-          src="/public/music.png"
+          src="/dist/music.png"
           style={{ width: "3.5%", height: "auto", marginRight: "10px" }}
         />
         <Navbar.Brand href="/">SongSift</Navbar.Brand>
