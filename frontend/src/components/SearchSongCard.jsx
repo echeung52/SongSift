@@ -8,7 +8,7 @@ export default function SongCard({ song }) {
   };
 
   return (
-    <Card className="mb-4" style={{ width: "18rem" }}>
+    <Card className="mb-4 text-center" style={{ width: "18rem" }}>
       <Card.Img variant="top" src={song.image} />
       <Card.Body>
         <Card.Title>{song.name}</Card.Title>

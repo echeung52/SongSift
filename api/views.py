@@ -8,6 +8,7 @@ import json
 client_id = os.environ.get("CLIENT_ID")
 client_secret = os.environ.get("CLIENT_SECRET")
 
+
 def get_token():
     auth_string = client_id + ':' + client_secret
     auth_bytes = auth_string.encode('utf-8')
