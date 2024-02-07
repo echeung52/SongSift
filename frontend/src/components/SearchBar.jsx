@@ -1,37 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Form, InputGroup } from "react-bootstrap";
+import { getSongs } from "../actions/SongSearchActions";
+import { useDispatch } from "react-redux";
 
-export default function SearchBar({ setSearchedSongs }) {
+export default function SearchBar() {
   const [input, setInput] = useState("");
-
-  useEffect(() => {
-    const input = localStorage.getItem("searchInput");
-    if (input) {
-      setInput(input);
-    }
-  }, []);
-
-  const getSongs = async () => {
-    try {
-      if (input !== "") {
-        const { data } = await axios.get(
-          `https://www.song-sift.com/api/search/${input}`
-        );
-        setSearchedSongs(data);
-        localStorage.setItem("searchInput", input);
-        localStorage.setItem("searchedSongs", JSON.stringify(data));
-      }
-    } catch (error) {
-      console.error("Error searching for songs: ", error);
-    }
-  };
+  const dispatch = useDispatch();
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      getSongs();
+      dispatch(getSongs(input));
     }
   };
+
   return (
     <InputGroup className="mb-3 mt-3">
       <Form.Control
@@ -42,7 +24,13 @@ export default function SearchBar({ setSearchedSongs }) {
         onKeyDown={handleKeyPress}
         value={input}
       />
-      <Button variant="outline-secondary" id="button-addon2" onClick={getSongs}>
+      <Button
+        variant="outline-secondary"
+        id="button-addon2"
+        onClick={() => {
+          dispatch(getSongs(input));
+        }}
+      >
         Search
       </Button>
     </InputGroup>

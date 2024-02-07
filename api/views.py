@@ -54,6 +54,7 @@ def getRecommendations(request):
             'artist_name': track.get('artists', [{}])[0].get('name', ''),
             'external_url': track.get('external_urls', {}).get('spotify', ''),
             'images': [image.get('url', '') for image in track.get('album', {}).get('images', [])],
+            'id': track.get('id'),
         }
         tracks_info.append(track_info)
 

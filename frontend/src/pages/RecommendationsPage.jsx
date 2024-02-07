@@ -1,39 +1,40 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import axios from "axios";
-import { Row, Col } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { Row, Col, Alert, Container } from "react-bootstrap";
 import RecSongCard from "../components/RecSongCard";
+import Loader from "../components/Loader";
+import { getRecommendations } from "../actions/RecommendationActions";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function RecommendationsPage() {
   const { id } = useParams();
-  const [recommendations, setRecommendations] = useState([]);
+  const dispatch = useDispatch();
+  const { loading, songRecommendations, error } = useSelector(
+    (state) => state.recommendations
+  );
 
-  const getRecommendations = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://www.song-sift.com/api/recommendations/?q=${id}`
-      );
-      setRecommendations(data);
-    } catch (error) {
-      console.error("Error searching for songs: ", error);
-    }
-  };
   useEffect(() => {
-    getRecommendations();
-  }, []);
+    dispatch(getRecommendations(id));
+    console.log(songRecommendations);
+  }, [dispatch, id]);
 
   return (
     <>
-      <Link to="/" className="btn btn-primary my-3">
-        Back
-      </Link>
       <Row>
-        {recommendations &&
-          recommendations.map((song) => (
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <Alert variant="danger">{error}</Alert>
+        ) : (
+          songRecommendations &&
+          songRecommendations.map((song) => (
             <Col key={song.id} sm={12} md={6} lg={4} xl={3}>
-              <RecSongCard song={song} />
+              <Container className="d-flex justify-content-center">
+                <RecSongCard song={song} />
+              </Container>
             </Col>
-          ))}
+          ))
+        )}
       </Row>
     </>
   );

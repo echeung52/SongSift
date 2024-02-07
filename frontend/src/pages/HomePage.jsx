@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Alert } from "react-bootstrap";
+import Loader from "../components/Loader";
 import SearchBar from "../components/SearchBar";
 import SearchSongCard from "../components/SearchSongCard";
+import { useSelector } from "react-redux";
 
 export default function HomePage() {
-  const [searchedSongs, setSearchedSongs] = useState([]);
+  const [songs, setSearchedSongs] = useState([]);
+  const { loading, searchedSongs, error } = useSelector(
+    (state) => state.searchedSongs
+  );
 
-  useEffect(() => {
-    const searchedSongs = JSON.parse(localStorage.getItem("searchedSongs"));
-    if (searchedSongs) {
-      setSearchedSongs(searchedSongs);
-    }
-  }, []);
   return (
     <>
       <h2 className="text-center">SongSift</h2>
@@ -22,14 +21,22 @@ export default function HomePage() {
       <SearchBar setSearchedSongs={setSearchedSongs} />
       <div>
         <Row>
-          {searchedSongs &&
+          {loading ? (
+            error ? (
+              <Alert variant="danger">{error}</Alert>
+            ) : (
+              <Loader />
+            )
+          ) : (
+            searchedSongs &&
             searchedSongs.map((song) => (
               <Col key={song.id} sm={12} md={6} lg={4} xl={3}>
                 <Container className="d-flex justify-content-center">
                   <SearchSongCard song={song} />
                 </Container>
               </Col>
-            ))}
+            ))
+          )}
         </Row>
       </div>
     </>
