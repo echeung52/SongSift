@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Row, Col, Alert, Container } from "react-bootstrap";
+import { Row, Col, Alert, Container, Image } from "react-bootstrap";
 import RecSongCard from "../components/RecSongCard";
 import Loader from "../components/Loader";
 import { getRecommendations } from "../actions/RecommendationActions";
@@ -12,14 +12,28 @@ export default function RecommendationsPage() {
   const { loading, songRecommendations, error } = useSelector(
     (state) => state.recommendations
   );
+  const { song } = useSelector((state) => state.searchedSongs);
 
   useEffect(() => {
     dispatch(getRecommendations(id));
-    console.log(songRecommendations);
   }, [dispatch, id]);
 
   return (
     <>
+      <Row>
+        <Col>
+          <Image
+            src={song.image}
+            fluid
+            style={{ width: "45%", height: "auto", marginRight: "10px" }}
+          />
+        </Col>
+        <Col>
+          <Row>test</Row>
+          <Row>test</Row>
+          <Row>test</Row>
+        </Col>
+      </Row>
       <Row>
         {loading ? (
           <Loader />

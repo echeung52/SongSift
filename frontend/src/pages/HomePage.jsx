@@ -6,7 +6,6 @@ import SearchSongCard from "../components/SearchSongCard";
 import { useSelector } from "react-redux";
 
 export default function HomePage() {
-  const [songs, setSearchedSongs] = useState([]);
   const { loading, searchedSongs, error } = useSelector(
     (state) => state.searchedSongs
   );
@@ -18,7 +17,7 @@ export default function HomePage() {
         Search for your favorite track and you will find new songs you will
         love!{" "}
       </p>
-      <SearchBar setSearchedSongs={setSearchedSongs} />
+      <SearchBar />
       <div>
         <Row>
           {loading ? (

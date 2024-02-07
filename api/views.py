@@ -87,6 +87,26 @@ def search(request, song):
 
     return Response(track_info)
 
+@api_view(['GET'])
+def getTrack(request):
+    token = get_token()
+    headers = get_auth_header(token)
+    trackID = request.query_params.get('q', None)
+
+    url = f'https://api.spotify.com/v1/tracks/{trackID}'
+    
+    result = get(url, headers=headers)
+    track_data = result.json()
+
+    track_info = {
+        'id': track_data.get('id'),
+        'name': track_data.get('name'),
+        'image': track_data.get('album', {}).get('images', [{}])[0].get('url'),
+        'artist_name': track_data.get('artists', [{}])[0].get('name', ''),
+    }
+
+    return Response(track_info) 
+
 
 
 
