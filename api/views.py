@@ -33,10 +33,7 @@ def get_auth_header(token):
 def getRecommendations(request):
     token = get_token()
     trackID = request.query_params.get('q', None)
-    print(trackID)
     url = 'https://api.spotify.com/v1/recommendations'
-    
-
     params = {
         'seed_tracks': trackID,
         'limit': 12
@@ -45,7 +42,9 @@ def getRecommendations(request):
     headers = get_auth_header(token)
     
     result = get(url, headers=headers, params=params)
+
     json_result = json.loads(result.content)
+   
     
     tracks_info = []
     for track in json_result.get('tracks', []):
@@ -103,6 +102,7 @@ def getTrack(request):
         'name': track_data.get('name'),
         'image': track_data.get('album', {}).get('images', [{}])[0].get('url'),
         'artist_name': track_data.get('artists', [{}])[0].get('name', ''),
+        'external_url': track_data.get('external_urls', {}).get('spotify', ''),
     }
 
     return Response(track_info) 
