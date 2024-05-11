@@ -70,6 +70,7 @@ def getRecommendations(request):
             'external_url': track.get('external_urls', {}).get('spotify', ''),
             'images': [image.get('url', '') for image in track.get('album', {}).get('images', [])],
             'id': track.get('id'),
+            'preview_url' : track.get('preview_url'),
         }
         tracks_info.append(track_info)
 
