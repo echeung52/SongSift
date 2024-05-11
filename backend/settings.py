@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zmofa212ru52%!ie0ap!ak*jl_a#4-%c(bac#*zrfhi4on=h=*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'songsift-54d090579570.herokuapp.com', 'www.song-sift.com', 'song-sift.com']
 
@@ -138,4 +138,4 @@ STATIC_ROOT = BASE_DIR / 'dist/assets'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False

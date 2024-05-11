@@ -2,7 +2,7 @@ import {
   SONG_SEARCH_REQUEST,
   SONG_SEARCH_SUCCESS,
   SONG_SEARCH_FAIL,
-  SONG_SELECT,
+ 
 } from "../constants";
 
 export const songSearchReducer = (state = {}, action) => {
@@ -22,12 +22,9 @@ export const songSearchReducer = (state = {}, action) => {
         error: action.payload,
       };
 
-    case SONG_SELECT:
-      return {
-        loading: false,
-        song: action.payload,
-      };
     default:
       return state;
   }
 };
+
+
