@@ -5,8 +5,8 @@ import base64
 from requests import post, get
 import json
 
-client_id = 'a058da0fea2a4e6d888f222e9e288387'
-client_secret = '5ed52bc698b74801aa4f7847fa41c27b'
+client_id = os.environ.get("CLIENT_ID")
+client_secret = os.environ.get("CLIENT_SECRET")
 
 def get_token():
     auth_string = client_id + ':' + client_secret
