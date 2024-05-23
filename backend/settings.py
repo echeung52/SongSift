@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zmofa212ru52%!ie0ap!ak*jl_a#4-%c(bac#*zrfhi4on=h=*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'songsift-54d090579570.herokuapp.com', 'www.song-sift.com', 'song-sift.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'songsift-54d090579570.herokuapp.com', 'www.song-sift.com', 'song-sift.com', '.vercel.app']
 
 
 # Application definition
